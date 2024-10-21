@@ -1,0 +1,51 @@
+<div>
+  <h2>Book CRUD App with Signals</h2>
+
+<!-- Add Book Form -->
+<form (submit)="addBook()">
+  <input type="text" [(ngModel)]="newBook.title" [ngModelOptions]="{ standalone: true }" placeholder="Title" required />
+  <input type="text" [(ngModel)]="newBook.author" [ngModelOptions]="{ standalone: true }" placeholder="Author"
+    required />
+  <button type="submit">Add Book</button>
+</form>
+
+<!-- Edit Book Form -->
+<div *ngIf="selectedBook()">
+  <h3>Edit Book</h3>
+  <form (submit)="updateBook()">
+    <input type="text" [(ngModel)]="newBook.title" [ngModelOptions]="{ standalone: true }" placeholder="Title"
+      required />
+    <input type="text" [(ngModel)]="newBook.author" [ngModelOptions]="{ standalone: true }" placeholder="Author"
+      required />
+    <button type="submit">Update Book</button>
+  </form>
+</div>
+
+
+  <!-- Books List -->
+<!-- Books Table -->
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books()">
+      <td>{{ book.id }}</td>
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>
+        <button class="edit-btn" (click)="editBook(book)">Edit</button>
+        <button class="delete-btn" (click)="deleteBook(book.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
